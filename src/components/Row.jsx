@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-// import Movie from './Movie';
+import Movie from './Movie';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 const Row = ({ title, fetchURL, rowID }) => {
@@ -23,27 +23,8 @@ const Row = ({ title, fetchURL, rowID }) => {
 
   return (
     <>
-      <h2 className='text-white font-bold md:text-xl p-4 bg-slate-900'>{title}</h2>
-      <div className='relative flex items-center'>
-         <div className='bg-gray-900' id={'slider'}>
-            {movies.map((item, id) => (
-                <div className='w-[160px] sm:w-[200px] md:w-[240px] inline-block cursor-pointer relative p-2 hover:bg-black/80 hover:opacity-[20%] '>
-                    <img src={`https://image.tmdb.org/t/p/w500/${item?.backdrop_path}`}
-                     alt={item?.title} />
-                     <div className='absolute top-0 left-0 w-full h-full hover:bg-black/80 opacity-0 text-white'>
-                     <p>{item?.title}</p>
-                     </div>
-                </div>
-            ))}
-
-         </div>
-      </div>
-
-
-
-
-
-      {/* <div className='relative flex items-center group'>
+      <h2 className='text-white font-bold md:text-xl p-4'>{title}</h2>
+      <div className='relative flex items-center group'>
         <MdChevronLeft
           onClick={slideLeft}
           className='bg-white left-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block'
@@ -62,7 +43,7 @@ const Row = ({ title, fetchURL, rowID }) => {
           className='bg-white right-0 rounded-full absolute opacity-50 hover:opacity-100 cursor-pointer z-10 hidden group-hover:block'
           size={40}
         />
-      </div> */}
+      </div>
     </>
   );
 };
