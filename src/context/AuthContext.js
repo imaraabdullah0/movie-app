@@ -1,13 +1,13 @@
-import { createContext, useContext, useEffect, useState  } from 'react';
-import { auth } from '../firebase';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { auth, db } from '../firebase';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
 } from 'firebase/auth';
-// import {setDoc,doc} from 'firebase/firestore'
-
+import {setDoc,doc} from 'firebase/firestore'
+ 
 const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
@@ -15,9 +15,9 @@ export function AuthContextProvider({ children }) {
 
   function signUp(email, password) {
     createUserWithEmailAndPassword(auth, email, password);
-    // setDoc(doc( 'users', email), {
-    //     savedShows: []
-    // })
+    setDoc(doc(db, 'users', email), {
+        savedShows: []
+    })
   }
 
   function logIn(email, password) {
@@ -48,3 +48,49 @@ export function UserAuth() {
   return useContext(AuthContext);
 }
 
+
+
+
+
+// import { createContext, useContext, useEffect, useState } from 'react';
+// import { auth } from '../firebase';
+// import {
+//     createUserWithEmailAndPassword,
+//     signInWithEmailAndPassword,
+//     signOut,
+//     onAuthStateChanged,
+//     updateCurrentUser,
+//   } from 'firebase/auth'; 
+
+//   const AuthContext = createContext()
+//   const [user, setUser]=useState({})
+//   useEffect(() => {
+//     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+//       setUser(currentUser);
+//     });
+//     return () => {
+//       unsubscribe();
+//     };
+//   });
+//   export function AuthContextProvider({children}) {
+//     return (
+//     <AuthContextProvider value={{signUp, user, logIn, logOut}}>{children}</AuthContextProvider>
+//     )
+//   }
+
+//   export function UserAuth(){
+//     return useContext(AuthContext)
+//   }
+
+//   function signUp (email,password){
+//     return createUserWithEmailAndPassword(auth,email,password)
+//   }
+
+//   function logIn (email,password){
+//     return signInWithEmailAndPassword(auth,email,password)
+//   }
+
+//   function logOut (){
+//     return signOut(auth)
+//   }
+   

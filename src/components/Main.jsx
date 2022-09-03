@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Requests from '../Requests';
+import requests from '../Requests';
 
 const Main = () => {
   const [movies, setMovies] = useState([]);
@@ -8,7 +8,7 @@ const Main = () => {
   const movie = movies[Math.floor(Math.random() * movies.length)];
 
   useEffect(() => {
-    axios.get(Requests.requestPopular).then((response) => {
+    axios.get(requests.requestPopular).then((response) => {
       setMovies(response.data.results);
     });
   }, []);
